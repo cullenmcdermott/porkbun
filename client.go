@@ -6,7 +6,6 @@ import (
 	"context"
 	"encoding/json"
 	"fmt"
-	"golang.org/x/exp/slices"
 	"io/ioutil"
 	"net/http"
 	"net/url"
@@ -21,8 +20,6 @@ const statusSuccess = "SUCCESS"
 
 // DefaultTTL The minimum and the default is 300 seconds.
 const DefaultTTL = "300"
-
-var retryableCodes = []int{429, 502, 503, 504}
 
 // Client an API client for Porkdun.
 type Client struct {
@@ -213,15 +210,10 @@ func (c *Client) do(ctx context.Context, endpoint *url.URL, apiRequest interface
 
 	if resp.StatusCode != http.StatusOK {
 		return nil, StatusError{
-			Status:    resp.StatusCode,
-			Message:   string(respBody),
-			Retryable: isRetryable(resp.StatusCode),
+			Status:  resp.StatusCode,
+			Message: string(respBody),
 		}
 	}
 
 	return respBody, nil
-}
-
-func isRetryable(status int) bool {
-	return slices.Contains(retryableCodes, status)
 }
