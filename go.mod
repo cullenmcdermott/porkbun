@@ -2,10 +2,7 @@ module github.com/nrdcg/porkbun
 
 go 1.19
 
-require (
-	github.com/stretchr/testify v1.7.0
-	golang.org/x/exp v0.0.0-20221230162634-c8adb6e14cba
-)
+require github.com/stretchr/testify v1.7.0
 
 require (
 	github.com/davecgh/go-spew v1.1.0 // indirect
