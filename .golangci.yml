@@ -62,6 +62,7 @@ linters:
     - wrapcheck
     - exhaustive
     - exhaustivestruct
+    - exhaustruct
     - testpackage
     - tparallel
     - paralleltest
@@ -69,6 +70,12 @@ linters:
     - ifshort
     - forcetypeassert
     - bodyclose # Too many false positives: https://github.com/timakin/bodyclose/issues/30
+    # Cleaning up warnings
+    - deadcode # disabled because abandoned
+    - structcheck # disabled because abandoned
+    - varcheck # disabled because abandoned
+    - nosnakecase # disabled because replaced by revive
+    - wastedassign # disabled because of generics
 
 issues:
   exclude-use-default: false
